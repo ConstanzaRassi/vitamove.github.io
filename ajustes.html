@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/alumnosView/alumnoStyle.css">
+    <link rel="icon" href="/img/logoClaro.png">
+    <title>Ajustes</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+    <a href="https://wa.me/5493516777189?text=%C2%A1Hola!+Tengo+una+consulta+sobre..." class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
+    <nav class="nav">
+        <a href="#" class="nav__link" id="linkCuerpo">
+            <i class="material-icons">accessibility</i>
+            <span class="nav__texy">Cuerpo</span>
+        </a>
+        <a href="#" class="nav__link" id="linkClases">
+            <i class="material-icons">note_alt</i>
+            <span class="nav__texy">Clases</span>
+        </a>
+        <a href="#" class="nav__link" id="linkPerfil">
+            <i class="material-icons">person</i>
+            <span class="nav__texy">Perfil</span>
+        </a>
+        <a href="#" class="nav__link nav__link--active" id="linkAjustes">
+            <i class="material-icons">settings</i>
+            <span class="nav__texy">Ajustes</span>
+        </a>
+    </nav>
+
+    <div class="container " style="margin-bottom: 100px;">
+
+        <h2 style="margin-top: 30px;">PREGUNTAS FRECUENTES</h2>
+
+        <div class="c">
+            <input autocomplete="off" type="checkbox" id="faq-1">
+            <h6><label for="faq-1">¿Puedo ir a cualquier sucursal?</label></h6>
+            <div class="p">
+                <p>Sí! Mientras seas miembro activo de VITAMOVE, podés tomar tus clases en cualquiera de nuestras
+                    sucursales</p>
+            </div>
+        </div>
+        <div class="c">
+            <input autocomplete="off" type="checkbox" id="faq-2">
+            <h6><label for="faq-2">¿Con qué medios puedo abonar mi plan?</label></h6>
+            <div class="p">
+                <p>Podés abonar online a través nuestra página web, mediante Mercado Pago tenés la posibilidad de abonar
+                    desde tu cuenta, usando tus tarjetas de crédito y débito. También, podés acercarte a tu sucursal de
+                    preferencia y
+                    abonar el efectivo.</p>
+            </div>
+        </div>
+        <div class="c">
+            <input autocomplete="off" type="checkbox" id="faq-3">
+            <h6><label for="faq-3">¿Cómo doy de baja mi perfil?</label></h6>
+            <div class="p">
+                <p>Para dar de baja tu perfil, podés contactarte por nuestros canales de comunicación pidiendo la baja
+                    de tu usuario.</p>
+            </div>
+        </div>
+        <div class="c">
+            <input autocomplete="off" type="checkbox" id="faq-4">
+            <h6><label for="faq-4">¿Puedo consultar al nutricionista?</label></h6>
+            <div class="p">
+                <p>Así es, con todos los planes accedés a consultas con nuestro profesional en nutrición.</p>
+            </div>
+        </div>
+        <div class="c">
+            <input autocomplete="off" type="checkbox" id="faq-5">
+            <h6><label for="faq-5">¿Tengo que avisar si no voy a asistir a una clase?</label></h6>
+            <div class="p">
+                <p>No es necesario avisar, simplemente podés desinscribirte de la clase desde tu cuenta de la página
+                    web. En la sección 'CLASES' vas a encontrar un listado de tus inscripciones, presiona el boton
+                    desinscribirme y listo!</p>
+            </div>
+        </div>
+        <div class="c" style="margin-bottom: 18px;">
+            <input autocomplete="off" type="checkbox" id="faq-6">
+            <h6><label for="faq-6">¿Cuándo debo anotarme a una clase?</label></h6>
+            <div class="p">
+                <p>A las 00:00 de todos los días se cargan las clases disponibles. Debajo del horario y el profesor,
+                    podés ver el cupo disponible para esa clase.</p>
+            </div>
+        </div>
+        <!-- <a href="" style="color:white;" class="text-center">Términos y Condiciones</a> -->
+
+
+        <a href="/login.html" type="button" class="btn btn-info btn-sm text-center"
+            style="margin-bottom: 100px; margin-top: 50px; font-size: 17px;">Cerrar Sesión</a>
+        <br>
+
+
+    </div>
+
+
+
+
+
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        var paramsString = window.location.search
+        var searchParams = new URLSearchParams(paramsString);
+
+        id = searchParams.getAll("id")
+
+        $("#linkClases").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/clases.html?id=" + id);
+        });
+        $("#linkPerfil").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + id);
+        });
+        $("#linkCuerpo").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/humanito.html?id=" + id);
+        });
+        $("#linkAjustes").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/ajustes.html?id=" + id);
+        });
+    </script>
+</body>
+
+</html>

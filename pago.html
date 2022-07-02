@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="https://kit.fontawesome.com/bdd89edb33.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="/img/logoClaro.png">
+    <title>Planes</title>
+    <style>
+        .nav {
+            position: fixed;
+            z-index: 10;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .nav__link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            min-width: 50px;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: sans-serif;
+            font-size: 13px;
+            color: #747474;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.1 ease-in-out;
+        }
+
+        .nav__link:hover {
+            background-color: #62626223;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            color: #747474;
+        }
+
+        .nav__link--active {
+            color: #29a3b6;
+        }
+
+        .nav__link--active:hover {
+            color: #29a3b6;
+        }
+
+        .nav__icon {
+            font-size: 18px;
+        }
+
+        .u-center-text {
+            text-align: center !important;
+        }
+
+        .u-margin-bottom-small {
+            margin-bottom: 1.5rem !important;
+        }
+
+        .u-margin-bottom-medium {
+            margin-bottom: 4rem !important;
+        }
+
+        .u-margin-top-big {
+            margin-top: 5rem !important;
+        }
+
+        body {
+            font-family: "Lato", sans-serif;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+
+        .heading-primary {
+            color: rgb(129, 72, 72);
+            text-transform: uppercase;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            margin-bottom: 6rem;
+        }
+
+        .heading-primary--main {
+            display: block;
+            font-size: 6rem;
+            font-weight: 400;
+            letter-spacing: 3.5rem;
+            -webkit-animation-name: moveInLeft;
+            animation-name: moveInLeft;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: ease-out;
+            animation-timing-function: ease-out;
+            /*
+        animation-delay: 3s;
+        animation-iteration-count: 3;
+        */
+        }
+
+        .heading-primary--sub {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1.75rem;
+            -webkit-animation: moveInRight 1s ease-out;
+            animation: moveInRight 1s ease-out;
+        }
+
+        .heading-secondary {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: "Lato", sans-serif;
+            line-height: 1.7;
+            color: transparent;
+            letter-spacing: 0.2rem;
+            line-height: 1;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+            color: rgb(255, 255, 255);
+        }
+
+        .btn,
+        .btn:link,
+        .btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 1.5rem 4rem;
+            display: inline-block;
+            border-radius: 0.5rem;
+            -webkit-transition: all 0.2s;
+            transition: all 0.2s;
+            position: relative;
+            font-size: 1.6rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            -webkit-transform: translateY(-3px);
+            transform: translateY(-3px);
+            -webkit-box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover::after {
+            -webkit-transform: scaleX(1.4) scaleY(1.6);
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+
+        .btn:active,
+        .btn:focus {
+            outline: none;
+            -webkit-transform: translateY(-1px);
+            transform: translateY(-1px);
+            -webkit-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+        }
+
+        .btn--white {
+            background-color: rgba(0, 0, 0, 0.664);
+            color: rgb(255, 255, 255);
+        }
+
+        .btn--white::after {
+            background-color: rgb(203, 19, 19);
+        }
+
+        .btn--green {
+            background: url(https://st.depositphotos.com/2086879/2300/i/600/depositphotos_23000836-stock-photo-metal-background.jpg);
+
+            color: rgb(210, 24, 24);
+        }
+
+        .btn--green::after {
+            background-color: #55c57a;
+        }
+
+        *,
+        *::after,
+        *::before {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+        }
+
+        html {
+            font-size: 62.5%;
+
+        }
+
+        body {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .section-plans {
+            /* background-color: #000; */
+            background-image: url(https://media.istockphoto.com/photos/textured-black-background-picture-id675011656?b=1&k=6&m=675011656&s=170667a&w=0&h=7Rj0hsWoMixJR_FeljWvDQgejxj2f8kBe_WiGvJlfoE=);
+            min-height: 100vh;
+            padding: 4rem 0 4rem 0;
+            background-size: cover;
+            background-attachment: fixed;
+            margin-bottom: 50px;
+
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+        }
+
+        .card {
+            -webkit-perspective: 1500000rem;
+            perspective: 150rem;
+            -moz-perspective: 150rem;
+            position: relative;
+            height: 52rem;
+            width: 32rem;
+            background-color: transparent;
+            border: none;
+            margin-left: -19px;
+        }
+
+        .card__side {
+            height: 52rem;
+            -webkit-transition: all 0.8s ease;
+            transition: all 0.8s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+            -webkit-box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+            box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+        }
+
+        .card__side--front {
+            /* background-color: #fff; */
+            background-color: black;
+
+        }
+
+        .card__side--front-1 {
+            /* background: linear-gradient(-45deg, #f403d1, #64b5f6); */
+            background: url(https://st.depositphotos.com/2086879/2300/i/600/depositphotos_23000836-stock-photo-metal-background.jpg);
+            background-size: cover;
+            /* background-attachment: fixed; */
+        }
+
+        .card__side--front-2 {
+            background: url(https://www.todofondos.net/wp-content/uploads/color-dorado.-fondo-dorado-en-2019.jpg);
+            background-size: cover;
+            /* background-attachment: fixed; */
+        }
+
+        .card__side--front-3 {
+            background: url(https://previews.123rf.com/images/kstudija/kstudija1502/kstudija150200051/36769296-diamond-abstract-vector-jewelry-background-concept-for-poster.jpg);
+            background-size: cover;
+            /* background-attachment: fixed; */
+        }
+
+        .card__side--back {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
+
+        .card__side--back-1 {
+            background: url(https://st.depositphotos.com/2086879/2300/i/600/depositphotos_23000836-stock-photo-metal-background.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .card__side--back-2 {
+            background: url(https://www.todofondos.net/wp-content/uploads/color-dorado.-fondo-dorado-en-2019.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .card__side--back-3 {
+            background: url(https://previews.123rf.com/images/kstudija/kstudija1502/kstudija150200051/36769296-diamond-abstract-vector-jewelry-background-concept-for-poster.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .card:hover .card__side--front-1,
+        .card:hover .card__side--front-2,
+        .card:hover .card__side--front-3 {
+            -webkit-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+        }
+
+        .card:hover .card__side--back {
+            -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+        }
+
+        .card__title {
+            height: 20rem;
+            padding: 4rem 2rem 2rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .card__heading {
+            font-size: 4rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            text-align: center;
+            color: rgb(0, 0, 0);
+            width: 75%;
+        }
+
+        .card__heading-span {
+            padding: 1rem 1.5rem;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
+        .card__details {
+            padding: 0 2rem 2rem;
+        }
+
+        .card__details ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .card__details ul li {
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 1rem;
+        }
+
+        .card__details ul li:not(:last-child) {
+            border-bottom: 1px solid rgb(0, 0, 0);
+        }
+
+        .card__cta {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            width: 90%;
+            text-align: center;
+        }
+
+        .card__price-box {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            margin-bottom: 8rem;
+        }
+
+        .card__price-only {
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+
+        .card__price-value {
+            font-size: 6rem;
+            font-weight: 300;
+        }
+
+        .row {
+            max-width: 114rem;
+            /* margin: 0 auto; */
+            margin-top: -20px;
+
+        }
+
+        .row:not(:last-child) {
+            margin-bottom: 5rem;
+            margin-top: 5rem;
+        }
+
+        .row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .row [class^="col-"] {
+            float: left;
+        }
+
+        .row [class^="col-"]:not(:last-child) {
+            margin-right: 6rem;
+        }
+
+        .row .col-1-of-3 {
+            /* width: calc((100% - 2 * 6rem) /3); */
+            width: 300px;
+
+
+        }
+
+        /* PARA EL CELULAR */
+        @media (max-width:1165px) {
+            .row .col-1-of-3 {
+
+                margin-left: 10%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="#" class="nav__link" id="linkCuerpo">
+            <i class="material-icons">accessibility</i>
+            <span class="nav__texy">Cuerpo</span>
+        </a>
+        <a href="#" class="nav__link" id="linkClases">
+            <i class="material-icons">note_alt</i>
+            <span class="nav__texy">Clases</span>
+        </a>
+        <a href="#" class="nav__link nav__link--active" id="linkPerfil">
+            <i class="material-icons">person</i>
+            <span class="nav__texy">Perfil</span>
+        </a>
+        <a href="#" class="nav__link" id="linkAjustes">
+            <i class="material-icons">settings</i>
+            <span class="nav__texy">Ajustes</span>
+        </a>
+    </nav>
+    <section class="section-plans" id="section-plans">
+        <div class="u-center-text u-margin-bottom-big">
+            <h2 class="heading-secondary">
+                PLANES
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-1-of-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card__side card__side--front-1">
+                        <div class="card__title card__title--1">
+                            <h4 class="card__heading">PLATA</h4>
+                        </div>
+
+                        <div class="card__details">
+                            <ul>
+                                <li>2 MESES</li>
+                                <li>Pase libre</li>
+                                <li>1 consulta con nutricionista</li>
+                                <li>15% descuento tienda online</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card__side card__side--back card__side--back-1">
+                        <div class="card__cta">
+                            <div class="card__price-box">
+                                <p class="card__price-only">solo</p>
+                                <p class="card__price-value">$5.600</p>
+                            </div>
+                            <button type="button" class="btn btn--white" data-toggle="modal" name="btnPlanPlata"
+                                id="btnPlanPlata" onclick="cargar(0)" data-target="#agregarF">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-1-of-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card__side card__side--front-2">
+                        <div class="card__title card__title--2">
+                            <h4 class="card__heading">ORO</h4>
+                        </div>
+                        <div class="card__details">
+                            <ul>
+                                <li>6 MESES</li>
+                                <li>Pase libre</li>
+                                <li>3 consultas con nutricionista</li>
+                                <li>50% descuento tienda online </li>
+                                <li>2 sesiones fisioterapia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card__side card__side--back card__side--back-2">
+                        <div class="card__cta">
+                            <div class="card__price-box">
+                                <p class="card__price-only">solo</p>
+                                <p class="card__price-value">$15.100</p>
+                            </div>
+                            <button type="button" class="btn btn--white" data-toggle="modal" id="btnPlanOro"
+                                onclick="cargar(1)" data-target="#agregarF">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-1-of-3 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card__side card__side--front-3">
+                        <div class="card__title card__title--3">
+                            <h4 class="card__heading">PLATINUM</h4>
+                        </div>
+                        <div class="card__details">
+                            <ul>
+                                <li>12 MESES</li>
+                                <li>Pase libre</li>
+                                <li>Consultas nutricionista ilimitadas</li>
+                                <li>50% descuento tienda online</li>
+                                <li>6 sesiones fisioterapia</li>
+                                <li>Personal trainer</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card__side card__side--back card__side--back-3">
+                        <div class="card__cta">
+                            <div class="card__price-box">
+                                <p class="card__price-only">solo</p>
+                                <p class="card__price-value">$28.500</p>
+                            </div>
+                            <!-- <button type="button" class="btn btn--white" id="btnPlanPlatinum"
+                                onclick="checkout3.open()">Pagar</button> -->
+                            <button type="button" class="btn btn--white" data-toggle="modal" id="btnPlanPlatinum"
+                                onclick="cargar(2)" data-target="#agregarF">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="agregarF" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" style="width: 374px;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container d-flex justify-content-center mt-5">
+                            <form>
+                                <div class="row">
+                                    <input autocomplete="off" type="hidden" class="form-control" id="txtIdPlan">
+                                    <input autocomplete="off" type="hidden" class="form-control" id="txtIdAlumno">
+
+                                    <div id="cardPaymentBrick_container"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var paramsString = window.location.search
+        var searchParams = new URLSearchParams(paramsString);
+        id = searchParams.get("id")
+
+        $("#linkClases").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/clases.html?id=" + id);
+        });
+        $("#linkPerfil").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + id);
+        });
+        $("#linkCuerpo").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/humanito.html?id=" + id);
+        });
+        $("#linkAjustes").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/ajustes.html?id=" + id);
+        });
+        $("#btnPagar").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/pago.html?id=" + id);
+        });
+    </script>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        function cargar(num) {
+            $("#txtIdPlan").val(num);
+
+
+            var paramsString = window.location.search
+            var searchParams = new URLSearchParams(paramsString);
+            let id = searchParams.get("id");
+            $("#txtIdAlumno").val(id);
+
+            const mp = new MercadoPago('TEST-b907030f-87c5-4002-b706-d523aa83297f');
+            const bricksBuilder = mp.bricks();
+            let idPlan = $("#txtIdPlan").val();
+
+
+            $.ajax({
+                url: "https://localhost:5001/Factura/ObtenerPlan/" + 1,
+                type: "GET",
+                success: function (result) {
+                    if (result.ok) {
+                        const renderCardPaymentBrick = async (bricksBuilder) => {
+
+                            const settings = {
+                                initialization: {
+                                    amount: result.return.precio, //valor del pago a realizar
+                                },
+                                callbacks: {
+                                    onReady: () => {
+                                        // callback llamado cuando Brick esté listo
+                                    },
+                                    onSubmit: (cardFormData) => {
+                                        // callback llamado cuando el usuario haga clic en el botón enviar los datos
+
+                                        // ejemplo de envío de los datos recolectados por el Brick a su servidor
+                                        return new Promise((resolve, reject) => {
+                                            console.log(JSON.stringify(cardFormData));
+                                            fetch("http://127.0.0.1:5501/payment.php", {
+                                                method: "POST",
+                                                headers: {
+                                                    "Content-Type": "application/json",
+                                                },
+                                                body: JSON.stringify(cardFormData)
+
+                                            })
+                                                .then((response) => {
+                                                    // recibir el resultado del pago
+                                                    response => response.json();  // convert to json
+                                                    console.log(response);
+
+                                                    let alumno = $("#txtIdAlumno").val();
+                                                    let plan = idPlan;
+                                                    let pago = 1;
+                                                    let monto = result.return.precio;
+                                                    let fecha = new Date();
+
+                                                    // console.log(alumno);
+                                                    // console.log(plan);
+                                                    // console.log(pago);
+                                                    // console.log(monto);
+                                                    // console.log(fecha);
+
+
+
+                                                    if (alumno === "" || plan === "" || pago === "" || monto === "" || fecha === "") {
+                                                        swal("Ingrese los datos requeridos");
+                                                    } else {
+                                                        altaFactura(alumno, plan, pago, monto, fecha);
+                                                        setTimeout(function () {
+                                                            swal("Tu pago fue procesado exitrosamente!", {
+                                                                buttons: {
+                                                                    catch: {
+                                                                        text: "Descargar Comprobante",
+                                                                        value: "catch",
+                                                                    },
+                                                                    cancel: "Cerrar",
+                                                                },
+                                                            });
+                                                        }, 3000)
+                                                            .then((value) => {
+                                                                switch (value) {
+
+                                                                    case "defeat":
+                                                                        location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + alumno);
+                                                                        break;
+
+                                                                    case "catch":
+
+                                                                        break;
+
+                                                                    default:
+                                                                        location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + alumno);
+                                                                }
+                                                            });
+                                                    }
+
+
+                                                    resolve();
+                                                })
+                                                .catch((error) => {
+                                                    // tratar respuesta de error al intentar crear el pago
+                                                    reject();
+                                                })
+                                        });
+                                    },
+                                    onError: (error) => {
+                                        // callback llamado para todos los casos de error de Brick
+                                    },
+                                },
+                            };
+                            const cardPaymentBrickController = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
+                        };
+                        renderCardPaymentBrick(bricksBuilder);
+                    } else {
+                        swal(result.error);
+                    }
+                },
+                error: function (Error) {
+                    swal("Problemas al conseguir datos de las facturas");
+                },
+            })
+        }
+        // const renderCardPaymentBrick = async (bricksBuilder) => {
+
+        //     const settings = {
+        //         initialization: {
+        //             amount: 100, //valor del pago a realizar
+        //         },
+        //         callbacks: {
+        //             onReady: () => {
+        //                 // callback llamado cuando Brick esté listo
+        //             },
+        //             onSubmit: (cardFormData) => {
+        //                 // callback llamado cuando el usuario haga clic en el botón enviar los datos
+
+        //                 // ejemplo de envío de los datos recolectados por el Brick a su servidor
+        //                 return new Promise((resolve, reject) => {
+        //                     console.log(JSON.stringify(cardFormData));
+        //                     fetch("http://127.0.0.1:5501/payment.php", {
+        //                         method: "POST",
+        //                         headers: {
+        //                             "Content-Type": "application/json",
+        //                         },
+        //                         body: JSON.stringify(cardFormData)
+
+        //                     })
+        //                         .then((response) => {
+        //                             // recibir el resultado del pago
+        //                             response => response.json();  // convert to json
+        //                             console.log(response);
+
+
+
+        //                             resolve();
+        //                         })
+        //                         .catch((error) => {
+        //                             // tratar respuesta de error al intentar crear el pago
+        //                             reject();
+        //                         })
+        //                 });
+        //             },
+        //             onError: (error) => {
+        //                 // callback llamado para todos los casos de error de Brick
+        //             },
+        //         },
+        //     };
+        //     const cardPaymentBrickController = await bricksBuilder.create('cardPayment', 'cardPaymentBrick_container', settings);
+        // };
+        // renderCardPaymentBrick(bricksBuilder);
+    </script>
+
+    <script>
+        // Agregar credenciales de SDK
+        const mp1 = new MercadoPago('TEST-b907030f-87c5-4002-b706-d523aa83297f', {
+            locale: 'es-AR'
+        });
+        const checkout1 = mp1.checkout({
+            preference: {
+                // id: '130151352-01bf9a22-775d-4de0-bba9-1e571378e6a1' 
+                id: '130151352-aa24263a-2163-47c8-9103-aefcab1902d9'// Indica el ID de preferencia
+            }
+        });
+
+        const mp2 = new MercadoPago('TEST-b907030f-87c5-4002-b706-d523aa83297f', {
+            locale: 'es-AR'
+        });
+        const checkout2 = mp2.checkout({
+            preference: {
+                id: '130151352-57150d14-dbe9-4499-a5df-aa37566c2eee'
+            }
+        });
+        // Agregar credenciales de SDK
+        const mp3 = new MercadoPago('TEST-b907030f-87c5-4002-b706-d523aa83297f', {
+            locale: 'es-AR'
+        });
+        const checkout3 = mp3.checkout({
+            preference: {
+                id: '130151352-e51447f1-37c3-4c42-9771-26ada8028fbe'
+            }
+        });
+
+        var paramsString = window.location.search
+        var searchParams = new URLSearchParams(paramsString);
+
+        id = searchParams.get("id")
+
+        $("#btnPlanPlata").click(function () {
+            console.log("HOLA")
+            console.log(id)
+            let alumno = id;
+            let plan = 1;
+            let pago = 3;
+            let monto = 5600;
+            let fecha = today;
+
+            if (alumno === "" || plan === "" || pago === "" || monto === "" || fecha === "") {
+                swal("Ingrese los datos requeridos");
+            } else {
+                altaFactura(alumno, plan, pago, monto, fecha);
+            }
+        });
+
+        $("#btnPlanOro").click(function () {
+            let alumno = id;
+            let plan = 2;
+            let pago = 3;
+            let monto = 15100;
+            let fecha = today;
+
+            if (alumno === "" || plan === "" || pago === "" || monto === "" || fecha === "") {
+                swal("Ingrese los datos requeridos");
+            } else {
+                altaFactura(alumno, plan, pago, monto, fecha);
+            }
+        });
+
+        $("#btnPlanPlatinum").click(function () {
+            let alumno = id;
+            let plan = 3;
+            let pago = 3;
+            let monto = 28500;
+            let fecha = today;
+
+            if (alumno === "" || plan === "" || pago === "" || monto === "" || fecha === "") {
+                swal("Ingrese los datos requeridos");
+            } else {
+                altaFactura(alumno, plan, pago, monto, fecha);
+            }
+        });
+
+        function altaFactura(alumno, plan, pago, monto, fecha) {
+            comando = {
+                "idAlumno": alumno,
+                "idPlan": plan,
+                "codPago": pago,
+                "fecha": fecha,
+                "total": monto
+            };
+            console.log(comando);
+            $.ajax({
+                url: "https://localhost:5001/Factura/AltaFactura",
+                type: "POST",
+                dataType: 'JSON',
+                contentType: 'application/json',
+                data: JSON.stringify(comando),
+                success: function (result) {
+                    if (result.ok) {
+                        // swal("Alta exitosa!");
+                        // setTimeout(function () { location.replace("http://127.0.0.1:5501/adminView/listFacturas.html"); }, 3000);
+                    } else {
+                        swal(result.error);
+                    }
+                },
+                error: function (error) {
+                    swal("Problemas en el servidor");
+                },
+            })
+        }
+
+        //obtener dia actual
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+    </script>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

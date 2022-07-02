@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="icon" href="/img/logoClaro.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Iniciar Sesión</title>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card">
+            <img class="user" src="img/logo3.png" height="100px" width="110px"
+                style="margin-top: 8px; margin-bottom: 30px;">
+            <input autocomplete="off" id="txtUsername" type="text" name="Username" placeholder="Usuario">
+            <input autocomplete="off" id="txtPassword" type="password" name="Password" placeholder="Contraseña">
+
+            <button type='button' class="button" id='btnIngresar' name='btnIngresar'
+                data-target='#ingresar'>INGRESAR</button>
+            <a href="#" type="button" data-toggle="modal" data-target="#contra">Recordar contraseña<br> </a>
+
+            <div class="container-fluid">
+                <a style="width: 5px; background-color: transparent; color: #fff;" class="float-right"
+                    data-toggle="modal" data-target="#condiciones">
+                    <i class='bi bi-info-circle'></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TERMINOS Y CONDICIONES -->
+    <div class="modal fade" id="condiciones" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Términos y Condiciones</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <b>1. ACEPTACIÓN</b>
+                    <br>
+                    En el presente documento (en adelante, el “Contrato”) se establecen los términos y condiciones de
+                    Vitamove que serán de aplicación al acceso y uso por parte del Usuario de esta página web
+                    Vitamove.com. Les rogamos lean atentamente el presente Contrato.
+                    Al acceder, consultar o utilizar el Sitio Web, los Usuarios aceptan cumplir los términos y
+                    condiciones establecidos en este Contrato. En caso de que usted no acepte quedar vinculado por los
+                    presentes términos y condiciones, no podrá acceder a, ni utilizar, el Sitio Web.
+                    Vitamove se reserva el derecho de actualizar el presente Contrato siempre que lo considere oportuno.
+                    En consecuencia, recomendamos al Usuario revisar periódicamente las modificaciones efectuadas al
+                    Contrato.
+                    <br>
+                    <br>
+                    <b>2. INFORMACIÓN FACILITADA POR EL USUARIO</b>
+                    <br>
+                    El Usuario reconoce y acepta que Vitamove es solamente una página web a través de la cual los
+                    usuarios pueden inscribirse a distintas clases en la cadena de gimnasios pertenecientes a Vitamove.
+                    Vitamove no comprueba ni controla la Información del Usuario. En consecuencia, Vitamove no asume
+                    garantía alguna en cuanto a la fiabilidad, precisión, integridad, validez o veracidad de la
+                    Información remitida por los usuarios.
+                    Vitamove se reserva el derecho de, a su libre JUICIO, eliminar, retirar, negarse a reflejar o
+                    bloquear toda Información del Usuario que Vitamove considere como inaceptable. En caso de que
+                    Vitamove reciba alguna notificación sobre la inaceptabilidad de determinada información facilitada
+                    por los usuarios, Vitamove podrá, con total discrecionalidad, investigar dicha información.
+                    El Usuario asume y acepta que Vitamove podrá conservar copia de la Información del Usuario, y
+                    revelar dicha información a terceros si lo considera necesario para:
+                    (i) proteger la integridad del Sitio Web;
+                    (ii) proteger los derechos de Vitamove;
+                    (iii) cumplir una orden judicial;
+                    (iv) cumplir cualquier trámite legal;
+                    (v) hacer valer los derechos y acciones que asisten a Vitamove a tenor de este Contrato; y
+                    (vi) satisfacer cualquier petición relativa a la infracción de derechos de terceros.
+                    <br>
+                    <br>
+
+                    <b>3. PROHIBICIÓN GENERAL</b>
+                    <br>
+                    Al acceder a y utilizar el Sitio Web, el Usuario se compromete a NO:
+                    (a) incumplir todas las leyes, reglamentos y normas aplicables a nivel local, estatal, provincial,
+                    nacional (Argentina);
+                    (b) infringir los derechos de propiedad intelectual y de privacidad, detallados en el Articulo 5;
+                    (c) descargar, enviar, transmitir o almacenar material que:
+                    • sea ilegal, ofensivo, difamatorio, fraudulento, engañoso, que induzca a error, dañino, amenazador,
+                    hostil, obsceno o censurable;
+                    • infrinja las obligaciones contractuales o de confidencialidad del Usuario;
+                    • perjudique o interfiera en las aplicaciones normales del Sitio Web, como el envío o la transmisión
+                    de virus, gusanos o troyanos, el envío continuado de material repetido o el envío de archivos
+                    desacostumbradamente grandes;
+                    (d) contravenir, o intentar contravenir, las medidas de seguridad del Sitio Web;
+                    (e) utilizar cualquier aparato, procedimiento o mecanismo como, por ejemplo, spiders y robots de
+                    rastreo, para localizar, rescatar, buscar, o acceder al Sitio Web o al Contenido, sin el previo
+                    consentimiento por escrito de parte de Vitamove;
+                    (f) acceder o intentar acceder a la cuenta o al login de las terceras personas;
+                    (g) hacerse pasar por otra persona;
+                    (h) utilizar el Sitio Web de forma no autorizada o para alguna actividad delictiva;
+                    (i) falsear los datos sobre sí mismo.
+                    <br>
+                    <br>
+                    <b>4. UTILIZACIÓN DEL SITIO Y OBLIGACIONES CONCRETAS</b>
+                    <br>
+                    Además de las obligaciones generales señaladas en el Artículo 3, el Usuario deberá:
+                    (a) utilizar el Sitio Web únicamente para los fines legalmente permitidos;
+                    (b) facilitar y mantener los datos personales que conforman la Información del Usuario de forma
+                    completa, correcta, actualizada y veraz;
+                    <br>
+                    <br>
+                    <b>5. POSESIÓN DE PROPIEDAD INTELECTUAL DERECHOS DE AUTOR Y LOGOS</b>
+                    <br>
+                    El Servicio y todos los materiales incluidos o transferidos, incluyendo, sin limitación, software,
+                    imágenes, texto, gráficos, logotipos, patentes, marcas registradas, marcas de servicio, derechos de
+                    autor, fotografías, audio, videos, música y todos los Derechos de Propiedad Intelectual relacionados
+                    con ellos, son la propiedad exclusiva de [Nombre del propietario dela página web]. Salvo que se
+                    indique explícitamente en este documento, no se considerará que nada en estos Términos crea una
+                    licencia en o bajo ninguno de dichos Derechos de Propiedad Intelectual, y tu aceptas no vender,
+                    licenciar, alquilar, modificar, distribuir, copiar, reproducir, transmitir, exhibir públicamente,
+                    realizar públicamente, publicar, adaptar, editar o crear trabajos derivados de los mismos.
+                    <br>
+                    <br>
+                    <b>6. CUENTA Y CONTRASEÑA</b>
+                    <br>
+                    Cuando el Usuario utiliza el Sitio Web, puede optar por abrir una cuenta en el Sitio. En ese caso,
+                    el Usuario recibirá el número de cuenta virtual y la contraseña inicial que le correspondan. Es
+                    responsabilidad exclusiva del Usuario:
+                    (a) mantener la confidencialidad de dichos números de cuenta virtual y contraseña;
+                    (b) actualizar y comprobar frecuentemente su contraseña; y
+                    (c) notificar inmediatamente a RH, si tiene conocimiento del uso no autorizado de su cuenta o de
+                    cualquier vulneración de las medidas de seguridad.
+                    <br>
+                    <br>
+                    <b>7. TERMINOS COMERCIALES</b>
+                    <br>
+                    Al comprar un artículo, el Usuario acepta que:
+                    (a) es responsable de leer el listado completo del servicio antes de comprometerse a comprarlo;
+                    (b) celebra un contrato legalmente vinculante para comprar un servicio cuando se compromete a
+                    comprar un servicio y completar el proceso de check-out.
+                    Los precios que cobramos por usar nuestros servicios / para nuestros productos se enumeran en la
+                    página web. Nos reservamos el derecho de cambiar nuestros precios para los productos que se muestran
+                    en cualquier momento y de corregir los errores de precios que pueden ocurrir inadvertidamente.
+                    Información adicional sobre precios e impuestos sobre las ventas está disponible en la página de
+                    pagos.
+                    La tarifa por los servicios y cualquier otro cargo que pueda incurrir en relación con tu uso del
+                    servicio, como los impuestos y las posibles tarifas de transacción, se cobrarán mensualmente a tu
+                    método de pago.
+                    <br>
+                    <br>
+                    <b>8. RETENCION DEL DERECHO A CAMBIAR DE OFERTA</b>
+                    <br>
+                    Podemos, sin aviso previo, cambiar los servicios; dejar de proporcionar los servicios o cualquier
+                    característica de los servicios que ofrecemos; o crear límites para los servicios. Podemos suspender
+                    de manera permanente o temporal el acceso a los servicios sin previo aviso ni responsabilidad por
+                    cualquier motivo, o sin ningún motivo.
+                    <br>
+                    <br>
+                    <b>9. PRIVACIDAD</b>
+                    <br>
+                    Vitamove procesará toda la información personal que el Usuario introduzca o facilite a través de
+                    nuestro Sitio Web de conformidad con la Política de
+                    > Privacidad del Sitio Web y los términos y condiciones relativos a la misma en este contrato.
+                    <br>
+                    <br>
+                    <b>10. COOKIES</b>
+                    <br>
+                    En este sitio web utilizamos cookies. Las cookies son archivos de texto que contienen pequeñas
+                    cantidades de información, que se descargan en su computadora o dispositivo móvil cuando usted
+                    visita una página web. A cada nueva visita a la misma página, los datos almacenados son recuperados
+                    por el servidor de origen. Son útiles porque permiten que un sitio web reconozca el equipo del
+                    usuario. Las cookies no pueden transmitir virus y tampoco dañan su computadora.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL MUESTRA CONTRASEÑA -->
+    <div class="modal fade" id="recordar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2 id="holaNombre">Hola Constanza!</h2>
+                    <br>
+                    Esta es tu contraseña <b id="dni">43812642</b>. Recuerda que puedes cambiarla en cualquier momento
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- RECORDAR / CAMBIAR CONTRASEÑA -->
+    <div class="modal fade" id="contra" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content"
+                style="text-align:center; align-items: center; align-content: center;background-color: rgba(0, 0, 0, 0);">
+                <div class="main">
+                    <input autocomplete="off" type="checkbox" id="chk" aria-hidden="true">
+
+                    <div class="signup">
+                        <form style="margin-top: 20px;">
+                            <label for="chk" aria-hidden="true">Recordar Contraseña</label>
+                            <input autocomplete="off" class="input" type="text" id="txtRecordarDni"
+                                placeholder="Ingrese su DNI">
+                            <input autocomplete="off" class="input" type="text" id="txtRecordarEmail"
+                                placeholder="Ingrese su Email">
+                            <button type="button" class="but" id='btnRecordar'>Recordar</button>
+                        </form>
+                    </div>
+
+                    <div class="login">
+                        <form style="margin-top: 30px;">
+                            <label for="chk" aria-hidden="true">Cambiar contraseña</label>
+                            <input autocomplete="off" class="input" type="text" id="txtDniC"
+                                placeholder="Ingrese su DNI" required="">
+                            <br>
+                            <input autocomplete="off" class="input" type="text" id="txtContraActual"
+                                placeholder="Contraseña actual" required="">
+                            <input autocomplete="off" class="input" type="password" id="txtNuevaContra"
+                                placeholder="Nueva contraseña" required="">
+                            <input autocomplete="off" class="input" type="password" id="txtNuevaContra2"
+                                placeholder="Confirme contraseña" required="">
+                            <button type="button" class="but2" id='btnCambiar' name='btnCambiar'>Cambiar</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        //boton ingresar
+        $("#btnIngresar").click(function () {
+            let username = $("#txtUsername").val();
+            let password = $("#txtPassword").val();
+
+            if (username === "" || password === "") {
+                swal("Ingrese los datos que faltan");
+            }
+            else if (username === "administrador@gmail.com" && password === "admin123") {
+                setTimeout(function () { location.replace("http://127.0.0.1:5501/adminView/dashboard.html"); }, 3000);
+            }
+            else {
+                const dni = username;
+                $.ajax({
+                    url: "https://localhost:5001/Alumno/ObtenerByDni/" + dni,
+                    type: "GET",
+                    success: function (result) {
+                        if (result.ok) {
+                            if (result.return == null) {
+                                swal("Usuario no registrado. Revise los datos ingresados");
+                            }
+                            else if (result.return.pass != password) {
+                                swal("Contraseña incorrecta");
+                            }
+                            else {
+                                id = result.return.idAlumno
+                                setTimeout(function () { location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + id); }, 3000);
+                            }
+                        } else {
+                            swal("No puede recuperarse los datos");
+                        }
+                    },
+                    error: function (error) {
+                        swal("Error en el servidor");
+                    },
+                })
+            }
+        });
+
+        //recordar password
+        $("#btnRecordar").click(function () {
+            let dni = $("#txtRecordarDni").val();
+            let email = $("#txtRecordarEmail").val();
+            if (dni == "" || email == "") {
+                swal("Complete los datos necesarios");
+            }
+            else {
+                $.ajax({
+                    url: "https://localhost:5001/Alumno/ObtenerByDni/" + dni,
+                    type: "GET",
+                    success: function (result) {
+                        if (result.ok) {
+                            if (result.return == null) {
+                                swal("Dni no existente");
+                            }
+                            else if (result.return.email == email)
+                                swal("Hola " + result.return.nombre + "!   Tu contraseña es:  " + result.return.pass);
+                            else {
+                                swal("Revisa que los datos sean correctos");
+                            }
+                        } else {
+                            swal("No puede recuperarse los datos");
+                        }
+                    },
+                    error: function (error) {
+                        swal("Error en el servidor");
+                    },
+                })
+            }
+        });
+
+        //boton cambiar password
+        $("#btnCambiar").click(function () {
+            let dniC = $("#txtDniC").val();
+
+            let passVieja = $("#txtContraActual").val();
+            let pass1 = $("#txtNuevaContra").val();
+            let pass2 = $("#txtNuevaContra2").val();
+
+            if (dniC == "" || passVieja == "" || pass1 == "" || pass2 == "") {
+                swal("Complete todos los datos necesarios");
+            }
+            else {
+                if (pass1 == pass2) {
+                    $.ajax({
+                        url: "https://localhost:5001/Alumno/ObtenerByDni/" + dniC,
+                        type: "GET",
+                        success: function (result) {
+                            if (result.ok) {
+                                if (result.return == null) {
+                                    swal("Usuario no registrado. Revise los datos ingresados");
+                                }
+                                else if (passVieja != result.return.pass) {
+                                    swal("Contraseña antigua incorrecta. Verifique el dato.");
+                                }
+                                else {
+                                    cambiarPassword(result.return)
+                                }
+                            } else {
+                                swal("No pueden recuperarse los datos");
+                            }
+                        },
+                        error: function (error) {
+                            swal("Error en el servidor");
+                        },
+                    })
+                }
+                else {
+                    swal("Verifique que hayas confirmado bien la contraseña");
+
+                }
+            }
+        });
+
+        function cambiarPassword(datos) {
+            let idAlumno = datos.idAlumno;
+            let nom = datos.nombre;
+            let ape = datos.apellido;
+            let sex = datos.idSexo;
+            let dni = datos.dni;
+            let fec = datos.fecNacimiento;
+            let estado = 1;
+            let ema = datos.email;
+            let pass = $("#txtNuevaContra").val();
+
+            modificarPass(idAlumno, nom, ape, dni, pass, sex, fec, ema, estado);
+        }
+
+        //modificar password
+        function modificarPass(idAlumno, nom, ape, dni, pass, sex, fec, ema, estado) {
+            comando = {
+                "idAlumno": idAlumno,
+                "nombre": nom,
+                "apellido": ape,
+                "dni": dni,
+                "pass": pass,
+                "fecNacimiento": fec,
+                "estado": estado,
+                "idSexo": parseInt(sex)
+            }
+
+            $.ajax({
+                url: "https://localhost:5001/Alumno/UpdateAlumno",
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(comando),
+                type: "PUT",
+                success: function (result) {
+                    if (result.ok) {
+                        swal("Tu contraseña se modificó con éxito");
+                        setTimeout(function () { location.replace("http://127.0.0.1:5501/login.html"); }, 3000);
+
+                    }
+                    else
+                        swal("Hubo un error en el servidor. Intenta nuevamente más tarde.");
+                },
+                error: function (error) {
+                    swal("Error" + error);
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <script type="text/javascript" src="https://static.sketchfab.com/api/sketchfab-viewer-1.12.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <link rel="icon" href="/img/logoClaro.png">
+    <style>
+        /* NAVBAR */
+        .nav {
+            position: fixed;
+            z-index: 10;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .nav__link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            min-width: 50px;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: sans-serif;
+            font-size: 13px;
+            color: #747474;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: background-color 0.1 ease-in-out;
+        }
+
+        .nav__link:hover {
+            background-color: #62626223;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            color: #747474;
+        }
+
+        .nav__link--active {
+            color: #29a3b6;
+        }
+
+        .nav__link--active:hover {
+            color: #29a3b6;
+        }
+
+        .nav__icon {
+            font-size: 18px;
+        }
+
+        .bodyHuman {
+            background-color: #dddddd;
+        }
+
+        .bn30 {
+            border: 5em;
+            cursor: pointer;
+            outline: none;
+            font-size: 16px;
+            -webkit-transform: translate(0);
+            /* position: absolute; */
+            transform: translate(0);
+            background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+            padding: 0.7em 2em;
+            border-radius: 65px;
+            box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+            -webkit-transition: box-shadow 0.25s;
+            transition: box-shadow 0.25s;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .bn30 .text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+        }
+
+        .bn30:after {
+            content: "";
+            border-radius: 18px;
+            position: absolute;
+            margin: 4px;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            background: #0e0e10;
+            /* background: rgb(8, 102, 102); */
+
+        }
+
+        .bn30:hover {
+            background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+            box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+        }
+
+        .bn30:hover .text {
+            background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+        }
+    </style>
+    <title>Humano</title>
+</head>
+
+<body style="background-color: #dddddd;">
+    <nav class="nav">
+        <a href="#" class="nav__link nav__link--active" id="linkCuerpo">
+            <i class="material-icons">accessibility</i>
+            <span class="nav__texy">Cuerpo</span>
+        </a>
+        <a href="#" class="nav__link" id="linkClases">
+            <i class="material-icons">note_alt</i>
+            <span class="nav__texy">Clases</span>
+        </a>
+        <a href="#" class="nav__link" id="linkPerfil">
+            <i class="material-icons">person</i>
+            <span class="nav__texy">Perfil</span>
+        </a>
+        <a href="#" class="nav__link" id="linkAjustes">
+            <i class="material-icons">settings</i>
+            <span class="nav__texy">Ajustes</span>
+        </a>
+    </nav>
+
+    <div style="margin-top:40px; text-align: center;">
+        <iframe src="" id="api-frame" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking
+            execution-while-out-of-viewport execution-while-not-rendered web-share allowfullscreen
+            mozallowfullscreen="true" webkitallowfullscreen="true" style="height: 500px;"></iframe>
+        <br>
+        <!-- <a href="#"><button class="bn30" id="btnOk" data-toggle="modal" data-target="#ejercicios">OK</button></a> -->
+        <a href="#"><button class="bn30" id="btnOk" style="margin-left: 25%;" data-toggle="modal">OK</button></a>
+        <a class="float-right"
+            style="margin-right: 20%; margin-top:10px;width: 5px; background-color: transparent; color: rgb(0, 0, 0);"
+            data-toggle="modal" data-target="#manual">
+            <i class='bi bi-question-circle'></i>
+        </a>
+
+        <div class="modal fade" id="manual" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Manual de uso</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h5><b>Bienvenido a nuestro humano dinámico!</b></h5>
+                        <br>
+                        <p>Este modelo te permite seleccionar distintos grupos musculares para que puedas realizar un
+                            entrenamiento 100% localizado.</p>
+                        <br>
+                        <h5>¿Cómo usarlo?</h5>
+                        <p>Debes seleccionar <b>tres grupos musculares </b> y se mostrará en pantalla un tipo de
+                            ejercicio que
+                            trabajará cada músculo y las repeticiones aconsejadas.</p>
+                        <p>Cada combinación que elijas te permitira realizar ejercicios totalmente diferentes para que
+                            trabajes el músculo de distintas maneras</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ejercicios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ejercicios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                                <th>Serie</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cuerpoTabla">
+                        </tbody>
+                    </table>
+                    <p>Se recomienda realizar: 5 series</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myAlert" class="alert alert-warning collapse"
+        style="position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);">
+        <a href="#" id="linkClose" class="close">&times;</a>
+        <strong>¡Atención!</strong> No puedes seleccionar más de tres grupos musculares
+    </div>
+    <div id="myAlert2" class="alert alert-warning collapse"
+        style="position: absolute; top: 50%; left: 50%;transform: translate(-50%, -50%);">
+        <a href="#" id="linkClose2" class="close">&times;</a>
+        <strong>¡Atención!</strong> Debes seleccionar tres grupos musculares
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        var paramsString = window.location.search
+        var searchParams = new URLSearchParams(paramsString);
+
+        id = searchParams.getAll("id")
+
+        $("#linkClases").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/clases.html?id=" + id);
+        });
+        $("#linkPerfil").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + id);
+        });
+        $("#linkCuerpo").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/humanito.html?id=" + id);
+        });
+        $("#linkAjustes").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/ajustes.html?id=" + id);
+        });
+    </script>
+
+    <!-- Initialize the viewer -->
+    <script type="text/javascript">
+
+        let Ejercicios = [];
+        var iframe = document.getElementById('api-frame');
+        var uid = 'f047bf51e33b4ae88f7bcda056f1fd91';
+
+        var client = new Sketchfab(iframe);
+
+        // materiales
+        var baseMaterialID = 'dcb6cb84-a271-46be-b1ec-b90c6b082ca5'; // TODO: hardcodeado, ver de obtener dinamicamente
+        var highlightMaterialID = '';
+
+        client.init(uid, {
+            success: function onSuccess(api) {
+                api.start();
+
+                api.addEventListener('viewerready', function () {
+
+                    // debug: printeo nodos que componen al modelo
+                    api.getNodeMap(function (err, nodes) {
+                        if (!err) {
+                            window.console.log(nodes); // [ ... ]
+                        }
+                    });
+
+                    // creo material de resaltado
+                    api.createMaterial({
+                        channels: {
+                            Matcap: {
+                                color: [0, 0.8, 0.7,]
+                                // color: [8, 102, 102]
+
+                            }
+                        }
+                    }, function (err, material) {
+                        if (!err) {
+                            highlightMaterialID = material.id;
+                        }
+                    });
+                })
+
+                // evento de hacer click
+                api.addEventListener('click', function (info) {
+                    if (!info.instanceID) { return; }
+
+                    // ID del grupo muscular
+                    console.log(info.instanceID);
+
+                    // resaltado del grupo
+                    if (info.material.id == baseMaterialID) { // si no esta resaltado el grupo (tiene el material base)
+                        // resalto el grupo muscular
+                        if (Ejercicios.length == 3) {
+                            console.log("ya seleccionaste demasiado")
+                            $('#myAlert').show('fade');
+                        }
+                        else {
+                            api.assignMaterial(info, highlightMaterialID);
+                            Ejercicios.push(info.instanceID);
+                        }
+                    } else {
+                        api.assignMaterial(info, baseMaterialID); // apago el grupo muscular
+                        const index = Ejercicios.indexOf(info.instanceID);
+                        if (index > -1) {
+                            Ejercicios.splice(index, 1); // 2nd parameter means remove one item only
+                        }
+                    }
+                    // refresh camara
+                    api.getCameraLookAt(function (err, camera) {
+                        api.setCameraLookAt(camera.position, camera.target, .1)
+                    });
+                })
+            },
+            error: function onError() {
+                console.log('Viewer error');
+            }
+        });
+
+        $('#linkClose').click(function () {
+            $('#myAlert').hide('fade');
+        })
+        $('#linkClose2').click(function () {
+            $('#myAlert2').hide('fade');
+        })
+
+        $("#btnOk").click(function () {
+
+            if (Ejercicios.length < 3) {
+                $('#myAlert2').show('fade');
+            }
+            else {
+                var idEjercicio = Ejercicios.sort(function (a, b) { return a - b }).join("");
+                console.log(idEjercicio);
+
+                const $tabla = document.querySelector("#cuerpoTabla");
+                $tabla.innerHTML = "";
+                $.ajax({
+                    url: "https://localhost:5001/General/ObtenerEjerciciosCuerpo/" + idEjercicio,
+                    type: "GET",
+                    success: function (result) {
+                        if (result.ok) {
+                            cargarTabla(result.return);
+                            $('#ejercicios').modal('show');
+                        } else {
+                            swal(result.error);
+                        }
+                    },
+                    error: function (error) {
+                        swal("Problemas en el servidor");
+                    },
+                })
+
+                function cargarTabla(datos) {
+
+                    let html = "<tr>";
+                    html += "<td> ● " + datos.ej1 + "<br> ● " + datos.ej2 + "<br> ● " + datos.ej3 + "</td>";
+                    html += "</tr>"
+                    $("#cuerpoTabla").append(html);
+                }
+            }
+        });
+    </script>
+    <!-- 
+    <script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="alumnoStyle.css">
+    <link rel="icon" href="/img/logoClaro.png">
+    <title>Clases</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <a href="#" class="nav__link" id="linkCuerpo">
+            <i class="material-icons">accessibility</i>
+            <span class="nav__texy">Cuerpo</span>
+        </a>
+        <a href="#" class="nav__link nav__link--active" id="linkClases">
+            <i class="material-icons">note_alt</i>
+            <span class="nav__texy">Clases</span>
+        </a>
+        <a href="#" class="nav__link" id="linkPerfil">
+            <i class="material-icons">person</i>
+            <span class="nav__texy">Perfil</span>
+        </a>
+        <a href="#" class="nav__link" id="linkAjustes">
+            <i class="material-icons">settings</i>
+            <span class="nav__texy">Ajustes</span>
+        </a>
+    </nav>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="card text-center py-5 px-5">
+            <h5 class="mb-1">MIS CLASES HOY</h5>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaC">
+                </tbody>
+            </table>
+
+            <hr style="color: rgb(255, 255, 255);">
+            <h5 class="mb-1">ANOTARME</h5>
+            <div class="" style="text-align: center; margin-bottom: 20px;">
+                <button type='button' data-toggle='modal' id='btnAnotarse' name='btnAnotarse' data-target='#anotarse'
+                    class='btn btn-outline-danger pl-4 pr-4 mt-2 ml-2' value='1'>Funcional</button>
+                <button type='button' data-toggle='modal' id='btnAnotarse' name='btnAnotarse' data-target='#anotarse'
+                    class='btn btn-outline-danger pl-4 pr-4 mt-2 ml-2' value='2'>Musculación</button>
+                <button type='button' data-toggle='modal' id='btnAnotarse' name='btnAnotarse' data-target='#anotarse'
+                    class='btn btn-outline-danger pl-4 pr-4 mt-2 ml-2' value='3'>Crossfit</button>
+                <button type='button' data-toggle='modal' id='btnAnotarse' name='btnAnotarse' data-target='#anotarse'
+                    class='btn btn-outline-danger pl-4 pr-4 mt-2 ml-2' value='4'>Cardio</button>
+                <button type='button' data-toggle='modal' id='btnAnotarse' name='btnAnotarse' data-target='#anotarse'
+                    class='btn btn-outline-danger pl-4 pr-4 mt-2 ml-2' value='5'>Stretching</button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <h5 class="mb-1">CLASES</h5>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+
+        var paramsString = window.location.search
+        var searchParams = new URLSearchParams(paramsString);
+        id = searchParams.get("id")
+
+
+        $("#linkClases").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/clases.html?id=" + id);
+        });
+        $("#linkPerfil").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/perfil.html?id=" + id);
+        });
+        $("#linkCuerpo").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/humanito.html?id=" + id);
+        });
+        $("#linkAjustes").on('click', function () {
+            location.replace("http://127.0.0.1:5501/alumnosView/ajustes.html?id=" + id);
+        });
+
+        $(document).ready(function () {
+            // id = $("#txtId").val();
+
+            $.ajax({
+                url: "https://localhost:5001/Clase/ObtenerClasesByAlumno/" + id,
+                type: "GET",
+                success: function (result) {
+                    if (result.ok) {
+                        cargarTablaC(result.return);
+                    } else {
+                        swal(result.error);
+                    }
+                },
+                error: function (error) {
+                    console.log(); (error);
+                },
+            });
+        })
+
+        //cargar tabla con método anterior
+        function cargarTablaC(datos) {
+            for (let i = 0; i < datos.length; i++) {
+                let html = "<tr>";
+                html += "<td id='id' style='font-size:14px; color:rgb(148, 148, 148);'>" + datos[i].idClaseNavigation.idDisciplinaNavigation.descripcion + ' ' + datos[i].idClaseNavigation.horaDesde + 'hs ' + datos[i].idClaseNavigation.idSucursalNavigation.nombre + "<br>" + "<button type='button' data-toggle='modal' id='btnDesinscribirme' name='btnDesinscribirme' data-target='#desinscribirme' style='background-color:grey; font-size:13px; color:white; height: 27px; text-align:center' class='btn pl-4 pr-4' value=" + datos[i].idClase + ">Desinscribirme</button></td>";
+                html += "</tr>"
+                $("#cuerpoTablaC").append(html);
+            }
+        }
+
+        $(document).on("click", "#btnDesinscribirme", function () {
+            idClase = $(this).val();
+
+
+            $.ajax({
+                url: "https://localhost:5001/Clase/DeleteAlumnoDeClase?idAlumno=" + id + "&idClase=" + idClase,
+                type: "DELETE",
+                ContentType: "application/json",
+                Accept: "application/json",
+                success: function (result) {
+                    if (result.ok) {
+                        setTimeout(function () { location.replace("http://127.0.0.1:5501/alumnosView/clases.html?id=" + id); }, 3000);
+
+                    } else {
+                        swal("No puede actualizarse");
+                    }
+                },
+                error: function (error) {
+                    swal("Error en el servidorrrrrr");
+                },
+            })
+        });
+
+        $(document).on("click", "#btnAnotarse", function () {
+            $("#cuerpoTabla").empty();
+            idDisciplina = $(this).val();
+            $.ajax({
+                url: "https://localhost:5001/Clase/ObtenerClaseByDisciplina/" + idDisciplina,
+                type: "GET",
+                ContentType: "application/json",
+                Accept: "application/json",
+                success: function (result) {
+                    if (result.ok) {
+                        console.log("antes cargar tabla")
+                        cargarTabla(result.return);
+
+                    } else {
+                        swal("No puede actualizarse");
+                    }
+                },
+                error: function (error) {
+                    swal("Error en el servidorrrrrr");
+                },
+            })
+        });
+
+        $(document).on("click", "#btnAlta", function () {
+            idClase = $(this).val();
+            $.ajax({
+                url: "https://localhost:5001/Alumno/ObtenerById/" + id,
+                type: "GET",
+                success: function (result) {
+                    if (result.ok) {
+                        if (result.return.estado == 0) {
+                            swal("Tu cuenta está inactiva. Por favor contáctate con el box.");
+
+                        }
+                        else if (result.return.estado == 1) {
+                            if (result.return.vencimiento < today) {
+                                swal("No tienes créditos disponibles. Puedes abonar un nuevo plan para continuar asistiendo a clases");
+                            }
+                            else {
+                                $.ajax({
+                                    url: "https://localhost:5001/Clase/ObtenerClase/" + idClase,
+                                    type: "GET",
+                                    success: function (result) {
+                                        if (result.ok) {
+                                            hora = result.return.horaDesde;
+                                            $.ajax({
+                                                url: "https://localhost:5001/Clase/VerificarHoraClase?id=" + id + "&hora=" + hora,
+                                                type: "GET",
+                                                success: function (result) {
+                                                    if (result.ok) {
+                                                        console.log(result.return);
+                                                        console.log(hora);
+                                                        if (result.return >= 1)
+                                                            swal("Ya estas inscripto a una clase en este horario, por favor intenta en otro horario");
+                                                        else {
+                                                            altaClaseAlumno(idClase, id);
+                                                        }
+                                                    } else {
+                                                        swal(result.error);
+                                                    }
+                                                },
+                                                error: function (error) {
+                                                    swal("Problemas en el servidor");
+                                                },
+                                            })
+                                        } else {
+                                            swal("No puede actualizarse");
+                                        }
+                                    },
+                                    error: function (error) {
+                                        swal("Error en el servidor");
+                                    },
+                                })
+                            }
+                        }
+                        else {
+                            swal("Hubo un error. Intente nuevamente en unos minutos");
+
+                        }
+                    } else {
+                        swal(result.error);
+                    }
+                },
+                error: function (error) {
+                    console.log(); (error);
+                },
+            });
+
+
+
+        }); //estan bien
+
+        function altaClaseAlumno(idClase, id) {
+            comando = {
+                "idClase": idClase,
+                "idAlumno": id,
+                "estado": 1
+            };
+            console.log(comando);
+            $.ajax({
+                url: "https://localhost:5001/Clase/AltaAlumnosXClase",
+                type: "POST",
+                dataType: 'JSON',
+                contentType: 'application/json',
+                data: JSON.stringify(comando),
+                success: function (result) {
+                    if (result.ok) {
+                        swal("Ya estas inscripto a tu clase!! Recuerda asistir a horario");
+                        setTimeout(function () { location.replace("http://127.0.0.1:5501/alumnosView/clases.html?id=" + id); }, 3000);
+                    } else {
+                        swal(result.error);
+                    }
+                },
+                error: function (error) {
+                    swal("Problemas en el servidor");
+                },
+            })
+        }
+
+        function cargarTabla(datos) {
+            console.log("entramos a cargar");
+            for (let i = 0; i < datos.length; i++) {
+                console.log("entramos a for")
+                $.ajax({
+                    url: "https://localhost:5001/Clase/ObtenerCupo/" + datos[i].idClase,
+                    type: "GET",
+                    ContentType: "application/json",
+                    Accept: "application/json",
+                    success: function (result) {
+                        if (result.ok) {
+                            let cupoActual = datos[i].cupo - result.return;
+                            let html = "<tr>";
+                            if (cupoActual == 0) {
+                                html += "<td><button type='button' class='btn btn-secondary btn-block pl-4 pr-4' data-placement='bottom' disabled value=" + datos[i].idClase +
+                                    "> " + datos[i].horaDesde + " - " + datos[i].idProfesorNavigation.nombre + " " + datos[i].idProfesorNavigation.apellido + " <br>" + datos[i].idSucursalNavigation.nombre + "<br>" + "(" + cupoActual + ")" + "</button></td>";
+                            }
+                            else {
+                                html += "<td><button type='button' class='btn btn-outline-warning btn-block pl-4 pr-4' id='btnAlta' name='btnAlta' data-placement='bottom' value=" + datos[i].idClase + "> " + datos[i].horaDesde + " - "
+                                    + datos[i].idProfesorNavigation.nombre + " " + datos[i].idProfesorNavigation.apellido + " <br> " + datos[i].idSucursalNavigation.nombre + "<br>" + "(" + cupoActual + ")" + "</button></td>";
+                            }
+                            html += "</tr>"
+                            $("#cuerpoTabla").append(html);
+                        } else {
+                            swal("No puede actualizarse");
+                        }
+                    },
+                    error: function (error) {
+                        swal("Error en el servidorrrrrr");
+                    },
+                })
+            }
+        }
+        //obtener dia actual
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+
+    </script>
+</body>
+
+</html>
